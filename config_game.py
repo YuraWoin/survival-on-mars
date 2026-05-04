@@ -6,7 +6,7 @@ class Player:
         self.sckrin = sckrin
         self.image = walk_right[0]
         self.max_y = y
-        self.hitbox = Rect(x, y, self.image.get_width(), self.image.get_height())
+        self.hitbox = pygame.Rect(x, y, self.image.get_width(), self.image.get_height())
         self.velocity = 0
         self.gravity = 0.7
         self.in_air = False
@@ -14,9 +14,9 @@ class Player:
         
 
     def update(self):
-        keys = key.get_pressed()
+        keys = pygame.key.get_pressed()
         
-        if keys[K_SPACE] and not self.in_air:
+        if keys[pygame.K_SPACE] and not self.in_air:
             self.velocity = 15
             self.in_air = True
         if self.in_air:
@@ -32,7 +32,7 @@ class Zombie:
     def __init__(self, x, y, sckrin, zombie_image):
         self.sckrin = sckrin
         self.image = zombie_image
-        self.hitbox = Rect(x, y, self.image.get_width(), self.image.get_height())
+        self.hitbox = pygame.Rect(x, y, self.image.get_width(), self.image.get_height())
         self.speed = 10
         
 
@@ -53,7 +53,7 @@ class Strilba:
     def __init__(self, x, y, sckrin, image):
         self.sckrin = sckrin
         self.image = image
-        self.hitbox = Rect(x, y, self.image.get_width(), self.image.get_height())
+        self.hitbox = pygame.Rect(x, y, self.image.get_width(), self.image.get_height())
         self.speed = 10
         self.active = True
         

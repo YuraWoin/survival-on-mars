@@ -1,5 +1,6 @@
 from pygame import *
-from image import walk, fon, fon1, zombie1, icon, myfount, piv_pav, fon_sounds
+import random
+from image import walk, fon, fon1, zombie1, icon, myfount, piv_pav, fon_sounds, fon_on_mars
 from config_game import Player, Zombie, Strilba, Level
 
 
@@ -77,10 +78,10 @@ while ranning:
             zombie_list_in_game.append(Zombie(740, 290, sckrin, zombie1)) 
 
     if level.in_house:
-        sckrin.blit(fon1, (0, 0))          # фон хати
+        sckrin.blit(fon_on_mars, (0, 0))          # фон хати
     else:
         for i in range(dlyafonu):
-            sckrin.blit(fon, (fon_x + i * 736, 0))
+            sckrin.blit(fon_on_mars, (fon_x + i * 736, 0))
         
     if not game_started:
         sckrin.fill((255, 255, 255))
