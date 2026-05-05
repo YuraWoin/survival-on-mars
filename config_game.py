@@ -1,4 +1,5 @@
 import pygame
+import random
 from image import * 
 
 class Player:
@@ -69,17 +70,72 @@ class Strilba:
     def collides_with(self, other_rect):
         return self.hitbox.colliderect(other_rect)
 
+# class Level:
+#     def __init__(self):
+#         self.current = 1
+#         self.distance = 0        
+#         self.in_house = False 
+#         self.current = "space"
+#         self.flight_progress = 0
+
+#     def update(self, fon_x=0):
+#         if self.current == "space":
+#             self.flight_progress += 1
+#             if self.flight_progress >= 1800:
+#                 self.current = "mars"
+#             return True     
+#         return False
 
 class Level:
     def __init__(self):
-        self.current = 1
-        self.distance = 0        
-        self.in_house = False   
+        self.current = "space"
+        self.flight_progress = 0
 
-    def update(self, fon_x):
-        self.distance = abs(fon_x)
-        if self.distance >= 5000 and not self.in_house:
-            self.in_house = True
-            return True     
+    def update(self, fon_x=0):
+        if self.current == "space":
+            self.flight_progress += 1
+            if self.flight_progress >= 1800:
+                self.current = "mars"
+                return True
         return False
 
+
+
+class Meteor:
+    def __init__(self, x, y, sckrin, image):
+        self.sckrin = sckrin
+        self.image = image
+        self.hitbox = pygame.Rect(x, y, self.image.get_width(), self.image.get_height())
+        self.speed = random.randint(3, 7)
+        self.active = True
+
+    def update(self):
+        self.hitbox.y += self.speed
+        if self.hitbox.y > 500:
+            self.active = False
+
+    def draw(self):
+        self.sckrin.blit(self.image, (self.hitbox.x, self.hitbox.y))
+
+    def collides_with(self, other_rect):
+        return self.hitbox.colliderect(other_rect)
+    
+
+
+class RocketBullet:
+    def __init__(self, x, y, sckrin):
+        self.sckrin = sckrin
+        self.hitbox = pygame.Rect(x, y, 5, 12)
+        self.speed = 12
+        self.active = True
+
+    def update(self):
+        self.hitbox.y -= self.speed
+        if self.hitbox.y < -20:
+            self.active = False
+
+    def draw(self):
+        pygame.draw.rect(self.sckrin, (255, 140, 0), self.hitbox)  # помаранчева
+
+    def collides_with(self, other_rect):
+        return self.hitbox.colliderect(other_rect)
