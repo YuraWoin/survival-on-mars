@@ -105,7 +105,7 @@ class Meteor:
     def __init__(self, x, y, sckrin, image):
         self.sckrin = sckrin
         self.image = image
-        self.hitbox = pygame.Rect(x, y, self.image.get_width(), self.image.get_height())
+        self.hitbox = pygame.Rect(x, y, 20, 20)
         self.speed = random.randint(3, 7)
         self.active = True
 
@@ -136,6 +136,21 @@ class RocketBullet:
 
     def draw(self):
         pygame.draw.rect(self.sckrin, (255, 140, 0), self.hitbox)  # помаранчева
+
+    def collides_with(self, other_rect):
+        return self.hitbox.colliderect(other_rect)
+    
+
+
+class BioMaterial:
+    def __init__(self, x, y, sckrin):
+        self.sckrin = sckrin
+        self.hitbox = pygame.Rect(x, y, 20, 20)
+        self.active = True
+
+    def draw(self):
+
+        pygame.draw.rect(self.sckrin, biomaterial, self.hitbox)
 
     def collides_with(self, other_rect):
         return self.hitbox.colliderect(other_rect)
