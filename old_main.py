@@ -117,7 +117,7 @@ while ranning:
             pipipipapapa(e)
         if e.type == meteor_timer and level.current == "space":
             meteor_list.append(Meteor(random.randint(20, 600), -50, sckrin, meteor))
-            if e.type == pygame.KEYDOWN:
+        if e.type == pygame.KEYDOWN:
                 if e.key == pygame.K_ESCAPE:
                     paused = not paused
         if e.type == pygame.QUIT:
