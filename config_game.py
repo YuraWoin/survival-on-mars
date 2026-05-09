@@ -70,25 +70,13 @@ class Strilba:
     def collides_with(self, other_rect):
         return self.hitbox.colliderect(other_rect)
 
-# class Level:
-#     def __init__(self):
-#         self.current = 1
-#         self.distance = 0        
-#         self.in_house = False 
-#         self.current = "space"
-#         self.flight_progress = 0
 
-#     def update(self, fon_x=0):
-#         if self.current == "space":
-#             self.flight_progress += 1
-#             if self.flight_progress >= 1800:
-#                 self.current = "mars"
-#             return True     
-#         return False
 
 class Level:
     def __init__(self):
+        #ПОТІМ ПОМІНЯТИ НА "space"
         self.current = "space"
+        #ПОТІМ ПОМІНЯТИ НА "space"
         self.flight_progress = 0
 
     def update(self, fon_x=0):
@@ -101,11 +89,14 @@ class Level:
 
 
 
+
+
+
 class Meteor:
     def __init__(self, x, y, sckrin, image):
         self.sckrin = sckrin
         self.image = image
-        self.hitbox = pygame.Rect(x, y, 20, 20)
+        self.hitbox = pygame.Rect(x, y, 15, 15)
         self.speed = random.randint(3, 7)
         self.active = True
 
@@ -125,7 +116,7 @@ class Meteor:
 class RocketBullet:
     def __init__(self, x, y, sckrin):
         self.sckrin = sckrin
-        self.hitbox = pygame.Rect(x, y, 5, 12)
+        self.hitbox = pygame.Rect(x + 15, y + 10, 20, 50)
         self.speed = 12
         self.active = True
 
@@ -145,12 +136,26 @@ class RocketBullet:
 class BioMaterial:
     def __init__(self, x, y, sckrin):
         self.sckrin = sckrin
+        self.image = biomaterial
         self.hitbox = pygame.Rect(x, y, 20, 20)
         self.active = True
 
     def draw(self):
+        self.sckrin.blit(self.image, (self.hitbox.x, self.hitbox.y))
 
-        pygame.draw.rect(self.sckrin, biomaterial, self.hitbox)
+    def collides_with(self, other_rect):
+        return self.hitbox.colliderect(other_rect)
+    
+class Aptechka:
+    def __init__(self, x, y, sckrin):
+        self.sckrin = sckrin
+        self.hitbox = pygame.Rect(x, y, 50, 50)
+        self.active = True
+
+    def draw(self):
+        pygame.draw.rect(self.sckrin, (255, 50, 50), self.hitbox)
+        pygame.draw.rect(self.sckrin, (255, 255, 255), (self.hitbox.x + 8, self.hitbox.y + 4, 4, 12))
+        pygame.draw.rect(self.sckrin, (255, 255, 255), (self.hitbox.x + 4, self.hitbox.y + 8, 12, 4))
 
     def collides_with(self, other_rect):
         return self.hitbox.colliderect(other_rect)
