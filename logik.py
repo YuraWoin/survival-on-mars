@@ -11,9 +11,9 @@ class GameState:
         self.bio_list = []
         self.aptechka_list = []
         self.bio_zibrano = 0
-        self.BIO_NEEDED = 5
+        self.BIO_NEEDED = 25
         self.hp = 100
-        self.pulki = 10
+        self.pulki = 35
         self.shoot = True
         self.last_shot_time = 0
         self.shoot_cooldown = 500
@@ -36,7 +36,7 @@ class GameState:
         self.aptechka_list.clear()
         self.bio_zibrano = 0
         self.hp = 100
-        self.pulki = 10
+        self.pulki = 35
         self.shoot = True
         self.last_shot_time = 0
         self.fon_x = 0
