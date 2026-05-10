@@ -32,7 +32,7 @@ ending_lines = [
     "Біо матеріал зібрано...",
     "Але вчені не виходять на зв'язок...",
     "Продовження слідує... ",
-    "Спойлер:до вчених добрались...)",
+    "(Спойлер:до вчених добрались...)",
     "Продовження в 2 частині"
 ]
 
@@ -85,7 +85,7 @@ while ranning:
         if e.type == zombie_timer:
             gs.zombie_list_in_game.append(Zombie(740, 337, sckrin, zombie1)) 
         if e.type == aptechka_timer and level.current == "mars":
-            gs.aptechka_list.append(Aptechka(random.randint(50, 580), 337, sckrin))
+            gs.aptechka_list.append(Aptechka(random.randint(100, 500), 337, sckrin))
             pygame.time.set_timer(aptechka_timer, random.randint(8000, 15000))
         if game_started and gs.game_play and not paused:
             if e.type == pygame.MOUSEBUTTONDOWN and e.button == 1 and gs.pulki > 0 and gs.shoot:
@@ -165,7 +165,13 @@ while ranning:
             if keys[pygame.K_d] and playerrr.hitbox.x < WIDTH - 80:
                 playerrr.hitbox.x += playerrr.speed
             # прогрес
-            level.update()
+            if level.update():
+                gs.bio_list.clear()
+                gs.aptechka_list.clear()
+                gs.pivs_pavs.clear()
+                gs.zombie_list_in_game.clear()
+                gs.shoot = True        
+                gs.last_shot_time = 0  
             gs.mars_start_time = pygame.time.get_ticks()
             progress = int((level.flight_progress / 1800) * 100)
             text_progress = myfount.render(f'До Марсу: {progress}%', True, (255, 255, 255))

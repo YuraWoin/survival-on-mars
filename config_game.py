@@ -74,9 +74,7 @@ class Strilba:
 
 class Level:
     def __init__(self):
-        #ПОТІМ ПОМІНЯТИ НА "space"
-        self.current = "space"
-        #ПОТІМ ПОМІНЯТИ НА "space"
+        self.current = "space"  
         self.flight_progress = 0
 
     def update(self, fon_x=0):
