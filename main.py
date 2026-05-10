@@ -141,6 +141,7 @@ while ranning:
         current_time = pygame.time.get_ticks()
         
         if level.current == "space":
+            bida.stop()
             gs.star_offset += 2
             draw_space(sckrin, gs.star_offset)
             # корабель
